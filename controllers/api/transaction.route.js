@@ -1,5 +1,5 @@
 var Transactions     = require('../../models/transactions.model');
-
+var GlobalHelpers = require('../helper/global.helper');
 module.exports = function(app) {
   'use strict';
   // This will handle the url calls for /users/:user_id
@@ -48,8 +48,14 @@ module.exports = function(app) {
 				res.json(todos);
 			});
 		});*/
-		var requiredFields = ['name', "transaction_type", "amount", "userid"];
 		
+		var checkRequiredFields = GlobalHelpers.checkRequiredFields(['name', "transaction_type", "amount", "userid"], params);
+		if(!checkRequiredFields.success){
+			return res.json(checkRequiredFields);
+		}
+
+		console.log("finally");
+
 		res.json(params);
 	});
 
