@@ -18,7 +18,6 @@ var emails = new Schema({
     verified: {type: Boolean, default: false},
     is_primary: {type: Boolean, default: false}
 });
-
 var UsersSchema   = new Schema({
     first_name: String,
     middle_name: String,

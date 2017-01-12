@@ -4,11 +4,20 @@ var Schema       = mongoose.Schema;
 
 var TransactionSchema   = new Schema({
     name: String,
-    create_date: {type: Date, index: true},
-    modified_date: {type: Date, index: true},
     transaction_date: {type: Date, index: true},
     transaction_type: {type: String, enum: ['credit', 'debit'], index: true},
-    note: {type: String, max: 500}
+    amount: Number,
+    note: {type: String, max: 500},
+    userid: {
+    	type: mongoose.Schema.Types.ObjectId,
+    	ref: "Users"
+    },
+    account: {
+    	type: mongoose.Schema.Types.ObjectId,
+    	ref: "Accounts"
+    },
+    create_date: {type: Date, index: true},
+    modified_date: {type: Date, index: true}
 });
 
 module.exports = mongoose.model('Transactions', TransactionSchema);
